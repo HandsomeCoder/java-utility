@@ -1,2 +1,6 @@
 # java-utility
-This project contains utility class which can help to improve the code readability and reduce the chance of bugs
+This project contains a variety of utility classes that has the following advantages:
+
+- Improve the code readability 
+- Reduce redundant code for validation 
+- Reduce the chance of bugs
