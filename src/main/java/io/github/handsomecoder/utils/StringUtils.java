@@ -16,11 +16,16 @@ import java.util.stream.Collectors;
  */
 public class StringUtils {
 
+    /**
+     * The constant HASH_WITH_SHA_256.
+     */
     public static final String HASH_WITH_SHA_256 = "SHA-256";
 
     /**
-     * @param str
-     * @return
+     * Is empty boolean.
+     *
+     * @param str the str
+     * @return boolean
      * @author Harsh Shah
      */
     public static boolean isEmpty(String str) {
@@ -28,8 +33,10 @@ public class StringUtils {
     }
 
     /**
-     * @param str
-     * @return
+     * Is not empty boolean.
+     *
+     * @param str the str
+     * @return boolean
      * @author Harsh Shah
      */
     public static boolean isNotEmpty(String str) {
@@ -37,8 +44,10 @@ public class StringUtils {
     }
 
     /**
-     * @param strs
-     * @return
+     * Is any empty boolean.
+     *
+     * @param strs the strs
+     * @return boolean
      * @author Harsh Shah
      */
     public static boolean isAnyEmpty(String... strs) {
@@ -52,8 +61,10 @@ public class StringUtils {
     }
 
     /**
-     * @param strings
-     * @return
+     * Is all empty boolean.
+     *
+     * @param strings the strings
+     * @return boolean
      * @author Harsh Shah
      */
     public static boolean isAllEmpty(String... strings) {
@@ -67,8 +78,10 @@ public class StringUtils {
     }
 
     /**
-     * @param values
-     * @return
+     * Builder string.
+     *
+     * @param values the values
+     * @return string
      * @author Harsh Shah
      */
     public static String builder(String... values) {
@@ -83,8 +96,10 @@ public class StringUtils {
     }
 
     /**
-     * @param value
-     * @return
+     * Value of string.
+     *
+     * @param value the value
+     * @return string
      * @author Harsh Shah
      */
     public static String valueOf(Object value) {
@@ -92,8 +107,11 @@ public class StringUtils {
     }
 
     /**
-     * @param str
-     * @return
+     * Gets hash.
+     *
+     * @param str  the str
+     * @param algo the algo
+     * @return hash
      * @author Harsh Shah
      */
     public static String getHash(String str, String algo) {
@@ -107,8 +125,10 @@ public class StringUtils {
     }
 
     /**
-     * @param hash
-     * @return
+     * Bytes to hex string.
+     *
+     * @param hash the hash
+     * @return string
      */
     public static String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
@@ -123,9 +143,11 @@ public class StringUtils {
     }
 
     /**
-     * @param str
-     * @param count
-     * @return
+     * Repeat string.
+     *
+     * @param str   the str
+     * @param count the count
+     * @return string
      * @author Harsh Shah
      */
     public static String repeat(String str, int count) {
@@ -133,10 +155,12 @@ public class StringUtils {
     }
 
     /**
-     * @param str
-     * @param count
-     * @param with
-     * @return
+     * Repeat and join string.
+     *
+     * @param str   the str
+     * @param count the count
+     * @param with  the with
+     * @return string
      * @author Harsh Shah
      */
     public static String repeatAndJoin(String str, int count, String with) {
@@ -151,9 +175,11 @@ public class StringUtils {
     }
 
     /**
-     * @param str
-     * @param regex
-     * @return
+     * Split and trim string [ ].
+     *
+     * @param str   the str
+     * @param regex the regex
+     * @return string [ ]
      */
     public static String[] splitAndTrim(String str, String regex) {
         String[] parts = str.split(regex);
@@ -166,10 +192,12 @@ public class StringUtils {
     }
 
     /**
-     * @param str
-     * @param regex
-     * @param replacement
-     * @return
+     * Replace string.
+     *
+     * @param str         the str
+     * @param regex       the regex
+     * @param replacement the replacement
+     * @return string
      */
     public static String replace(String str, String regex, String replacement) {
         return str.replaceAll(regex, replacement);
@@ -180,7 +208,7 @@ public class StringUtils {
      *
      * @param delimiter the delimiter
      * @param strs      the strs
-     * @return string
+     * @return string string
      * @author Harsh Shah
      */
     public static String join(String delimiter, List<String> strs){

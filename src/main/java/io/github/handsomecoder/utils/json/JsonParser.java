@@ -3,6 +3,8 @@ package io.github.handsomecoder.utils.json;
 import java.util.*;
 
 /**
+ * The type Json parser.
+ *
  * @author Harsh Shah
  */
 public class JsonParser {
@@ -20,8 +22,10 @@ public class JsonParser {
     }
 
     /**
-     * @param jsonString
-     * @return
+     * Find opening closing brackets map.
+     *
+     * @param jsonString the json string
+     * @return map
      * @author Harsh Shah
      */
     public static Map<Integer, Integer> findOpeningClosingBrackets(String jsonString) {
@@ -55,10 +59,12 @@ public class JsonParser {
     }
 
     /**
-     * @param characters
-     * @param startIdx
-     * @param openingClosingMap
-     * @return
+     * Build map hash model.
+     *
+     * @param characters        the characters
+     * @param startIdx          the start idx
+     * @param openingClosingMap the opening closing map
+     * @return hash model
      * @author Harsh Shah
      */
     public static HashModel buildMap(char[] characters, Integer startIdx,
@@ -202,8 +208,10 @@ public class JsonParser {
     }
 
     /**
-     * @param jsonString
-     * @return
+     * Parse hash model.
+     *
+     * @param jsonString the json string
+     * @return hash model
      * @author Harsh Shah
      */
     public static HashModel parse(String jsonString) {

@@ -7,6 +7,8 @@ import static io.github.handsomecoder.utils.StringUtils.repeatAndJoin;
 import static java.lang.String.format;
 
 /**
+ * The type Print utils.
+ *
  * @author Harsh Shah
  */
 public class PrintUtils {
@@ -15,7 +17,9 @@ public class PrintUtils {
     }
 
     /**
-     * @param message
+     * Print.
+     *
+     * @param message the message
      * @author Harsh Shah
      */
     public static void print(String message) {
@@ -23,7 +27,9 @@ public class PrintUtils {
     }
 
     /**
-     * @param message
+     * Println.
+     *
+     * @param message the message
      * @author Harsh Shah
      */
     public static void println(String message) {
@@ -31,7 +37,9 @@ public class PrintUtils {
     }
 
     /**
-     * @param message
+     * With margin.
+     *
+     * @param message the message
      * @author Harsh Shah
      */
     public static void withMargin(String message) {
@@ -41,7 +49,9 @@ public class PrintUtils {
     }
 
     /**
-     * @param messages
+     * With margin.
+     *
+     * @param messages the messages
      * @author Harsh Shah
      */
     public static void withMargin(String... messages) {
@@ -53,7 +63,9 @@ public class PrintUtils {
     }
 
     /**
-     * @param message
+     * Success.
+     *
+     * @param message the message
      * @author Harsh Shah
      */
     public static void success(String message) {
@@ -61,8 +73,10 @@ public class PrintUtils {
     }
 
     /**
-     * @param message
-     * @param values
+     * Success.
+     *
+     * @param message the message
+     * @param values  the values
      * @author Harsh Shah
      */
     public static void success(String message, Object... values) {
@@ -70,7 +84,9 @@ public class PrintUtils {
     }
 
     /**
-     * @param message
+     * Error.
+     *
+     * @param message the message
      * @author Harsh Shah
      */
     public static void error(String message) {
@@ -78,8 +94,10 @@ public class PrintUtils {
     }
 
     /**
-     * @param message
-     * @param values
+     * Error.
+     *
+     * @param message the message
+     * @param values  the values
      * @author Harsh Shah
      */
     public static void error(String message, Object... values) {
@@ -87,8 +105,10 @@ public class PrintUtils {
     }
 
     /**
-     * @param headers
-     * @param matrix
+     * Print matrix.
+     *
+     * @param headers the headers
+     * @param matrix  the matrix
      * @author Harsh Shah
      */
     public static void printMatrix(List<String> headers, List<List<Object>> matrix) {
