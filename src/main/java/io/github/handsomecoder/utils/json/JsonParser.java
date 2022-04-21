@@ -31,15 +31,16 @@ public class JsonParser {
     public static Map<Integer, Integer> findOpeningClosingBrackets(String jsonString) {
 
         Map<Integer, Integer> result = new HashMap<>();
-
         char[] characters = jsonString.toCharArray();
-
         Stack<ClosingCharacterModel> stack = new Stack<>();
 
         for (int i = 0; i < characters.length; i++) {
 
             if (characters[i] == DOUBLE_QUOTE) {
+                // skip the double quote
                 i++;
+
+                // skip all the characters between starting and ending double quotes
                 while (!(characters[i] == DOUBLE_QUOTE &&
                         (i == 0 || characters[i - 1] != BACKSLASH))) {
                     i++;

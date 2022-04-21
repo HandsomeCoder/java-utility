@@ -48,10 +48,6 @@ public class FileUtils {
 
         Path path = Path.of(start, tails);
 
-        if (path == null) {
-            return -1;
-        }
-
         return createDirectory(path);
     }
 
@@ -169,11 +165,6 @@ public class FileUtils {
     public static int write(List<String> lines, String startDirectory, String... location) {
 
         Path path = Path.of(startDirectory, location);
-
-        if (path == null) {
-            return -1;
-        }
-
 
         path = path.toAbsolutePath();
 

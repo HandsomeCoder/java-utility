@@ -65,6 +65,14 @@ public class ObjectUtils {
         return true;
     }
 
+    /**
+     * Is instance boolean.
+     *
+     * @param <T>    the type parameter
+     * @param object the object
+     * @param tClass the t class
+     * @return the boolean
+     */
     public <T> boolean isInstance(Object object, Class<T> tClass){
         return tClass.isInstance(object);
     }

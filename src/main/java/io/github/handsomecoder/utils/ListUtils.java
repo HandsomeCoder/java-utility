@@ -17,7 +17,7 @@ public class ListUtils {
      *
      * @param projection the projection
      * @param values     the values
-     * @return list
+     * @return list list
      * @author Harsh Shah
      */
     public static List<Object> project(List<Integer> projection, List<Object> values) {
@@ -30,9 +30,11 @@ public class ListUtils {
     }
 
     /**
-     * @param source
-     * @param target
-     * @return
+     * Difference list.
+     *
+     * @param source the source
+     * @param target the target
+     * @return list
      * @author Harsh Shah
      */
     public static List<Object> difference(List<Object> source, List<Object> target) {
@@ -41,9 +43,11 @@ public class ListUtils {
     }
 
     /**
-     * @param list1
-     * @param list2
-     * @return
+     * Common list.
+     *
+     * @param list1 the list 1
+     * @param list2 the list 2
+     * @return list
      * @author Harsh Shah
      */
     public static List<Object> common(List<Object> list1, List<Object> list2) {
