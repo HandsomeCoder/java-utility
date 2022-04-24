@@ -19,7 +19,7 @@ public class MapUtils {
      * @param v1  the v 1
      * @param k2  the k 2
      * @param v2  the v 2
-     * @return map
+     * @return map map
      */
     public static <K, V> Map<K, V> of(K k1, V v1, K k2, V v2) {
         MapBuilder<K, V> map = new MapBuilder<>();
@@ -40,7 +40,7 @@ public class MapUtils {
      * @param v3  the v 3
      * @param k4  the k 4
      * @param v4  the v 4
-     * @return map
+     * @return map map
      * @author Harsh Shah
      */
     public static <K, V> Map<K, V> of(K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4) {

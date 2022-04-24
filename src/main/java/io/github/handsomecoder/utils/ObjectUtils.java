@@ -16,7 +16,7 @@ public class ObjectUtils {
      * @return the boolean
      * @author Harsh Shah
      */
-    public boolean isNull(Object obj){
+    public static boolean isNull(Object obj){
         return null == obj;
     }
 
@@ -27,7 +27,7 @@ public class ObjectUtils {
      * @return the boolean
      * @author Harsh Shah
      */
-    public boolean isNotNull(Object obj){
+    public static boolean isNotNull(Object obj){
         return !isNull(obj);
     }
 
@@ -38,7 +38,7 @@ public class ObjectUtils {
      * @return the boolean
      * @author Harsh Shah
      */
-    public boolean isAnyNull(Object... objects){
+    public static boolean isAnyNull(Object... objects){
         for(Object object: objects){
             if(isNull(object)){
                 return true;
@@ -55,9 +55,25 @@ public class ObjectUtils {
      * @return the boolean
      * @author Harsh Shah
      */
-    public boolean isAllNull(Object... objects){
+    public static boolean isAllNull(Object... objects){
         for(Object object: objects){
             if(isNotNull(object)){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Is all not null boolean.
+     *
+     * @param objects the objects
+     * @return the boolean
+     */
+    public static boolean isAllNotNull(Object... objects){
+        for(Object object: objects){
+            if(isNull(object)){
                 return false;
             }
         }
@@ -73,7 +89,7 @@ public class ObjectUtils {
      * @param tClass the t class
      * @return the boolean
      */
-    public <T> boolean isInstance(Object object, Class<T> tClass){
+    public static <T> boolean isInstance(Object object, Class<T> tClass){
         return tClass.isInstance(object);
     }
 

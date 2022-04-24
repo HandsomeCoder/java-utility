@@ -34,7 +34,7 @@ public class ListUtils {
      *
      * @param source the source
      * @param target the target
-     * @return list
+     * @return list list
      * @author Harsh Shah
      */
     public static List<Object> difference(List<Object> source, List<Object> target) {
@@ -47,7 +47,7 @@ public class ListUtils {
      *
      * @param list1 the list 1
      * @param list2 the list 2
-     * @return list
+     * @return list list
      * @author Harsh Shah
      */
     public static List<Object> common(List<Object> list1, List<Object> list2) {

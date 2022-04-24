@@ -25,7 +25,7 @@ public class JsonParser {
      * Find opening closing brackets map.
      *
      * @param jsonString the json string
-     * @return map
+     * @return map map
      * @author Harsh Shah
      */
     public static Map<Integer, Integer> findOpeningClosingBrackets(String jsonString) {

@@ -22,7 +22,7 @@ public class FileUtils {
      * Create directory int.
      *
      * @param path the path
-     * @return int
+     * @return int int
      * @author Harsh Shah
      */
     public static int createDirectory(Path path) {
@@ -42,7 +42,7 @@ public class FileUtils {
      *
      * @param start the start
      * @param tails the tails
-     * @return int
+     * @return int int
      */
     public static int createDirectory(String start, String... tails) {
 
@@ -57,7 +57,7 @@ public class FileUtils {
      *
      * @param start the start
      * @param tails the tails
-     * @return int
+     * @return int int
      * @author Harsh Shah
      */
     public static int createFile(String start, String... tails) {
@@ -75,7 +75,7 @@ public class FileUtils {
      * Create file int.
      *
      * @param path the path
-     * @return int
+     * @return int int
      * @author Harsh Shah
      */
     public static int createFile(Path path) {
@@ -94,7 +94,7 @@ public class FileUtils {
      * Is exists boolean.
      *
      * @param path the path
-     * @return boolean
+     * @return boolean boolean
      * @author Harsh Shah
      */
     public static boolean isExists(Path path) {
@@ -109,7 +109,7 @@ public class FileUtils {
      * Is not exists boolean.
      *
      * @param path the path
-     * @return boolean
+     * @return boolean boolean
      * @author Harsh Shah
      */
     public static boolean isNotExists(Path path) {
@@ -121,7 +121,7 @@ public class FileUtils {
      *
      * @param start the start
      * @param more  the more
-     * @return list
+     * @return list list
      * @author Harsh Shah
      */
     public static List<String> read(String start, String... more) {
@@ -145,7 +145,7 @@ public class FileUtils {
      * @param line          the line
      * @param startLocation the start location
      * @param location      the location
-     * @return int
+     * @return int int
      * @author Harsh Shah
      */
     public static int write(String line, String startLocation, String... location) {
@@ -159,7 +159,7 @@ public class FileUtils {
      * @param lines          the lines
      * @param startDirectory the start directory
      * @param location       the location
-     * @return int
+     * @return int int
      * @author Harsh Shah
      */
     public static int write(List<String> lines, String startDirectory, String... location) {

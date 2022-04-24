@@ -25,7 +25,7 @@ public class StringUtils {
      * Is empty boolean.
      *
      * @param str the str
-     * @return boolean
+     * @return boolean boolean
      * @author Harsh Shah
      */
     public static boolean isEmpty(String str) {
@@ -36,7 +36,7 @@ public class StringUtils {
      * Is not empty boolean.
      *
      * @param str the str
-     * @return boolean
+     * @return boolean boolean
      * @author Harsh Shah
      */
     public static boolean isNotEmpty(String str) {
@@ -47,7 +47,7 @@ public class StringUtils {
      * Is any empty boolean.
      *
      * @param strs the strs
-     * @return boolean
+     * @return boolean boolean
      * @author Harsh Shah
      */
     public static boolean isAnyEmpty(String... strs) {
@@ -64,7 +64,7 @@ public class StringUtils {
      * Is all empty boolean.
      *
      * @param strings the strings
-     * @return boolean
+     * @return boolean boolean
      * @author Harsh Shah
      */
     public static boolean isAllEmpty(String... strings) {
@@ -81,7 +81,7 @@ public class StringUtils {
      * Builder string.
      *
      * @param values the values
-     * @return string
+     * @return string string
      * @author Harsh Shah
      */
     public static String builder(String... values) {
@@ -99,7 +99,7 @@ public class StringUtils {
      * Value of string.
      *
      * @param value the value
-     * @return string
+     * @return string string
      * @author Harsh Shah
      */
     public static String valueOf(Object value) {
@@ -111,7 +111,7 @@ public class StringUtils {
      *
      * @param str  the str
      * @param algo the algo
-     * @return hash
+     * @return hash hash
      * @author Harsh Shah
      */
     public static String getHash(String str, String algo) {
@@ -128,7 +128,7 @@ public class StringUtils {
      * Bytes to hex string.
      *
      * @param hash the hash
-     * @return string
+     * @return string string
      */
     public static String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
@@ -147,7 +147,7 @@ public class StringUtils {
      *
      * @param str   the str
      * @param count the count
-     * @return string
+     * @return string string
      * @author Harsh Shah
      */
     public static String repeat(String str, int count) {
@@ -160,7 +160,7 @@ public class StringUtils {
      * @param str   the str
      * @param count the count
      * @param with  the with
-     * @return string
+     * @return string string
      * @author Harsh Shah
      */
     public static String repeatAndJoin(String str, int count, String with) {
@@ -197,7 +197,7 @@ public class StringUtils {
      * @param str         the str
      * @param regex       the regex
      * @param replacement the replacement
-     * @return string
+     * @return string string
      */
     public static String replace(String str, String regex, String replacement) {
         return str.replaceAll(regex, replacement);

@@ -15,7 +15,7 @@ public class UUIDUtils {
     /**
      * Generate string.
      *
-     * @return string
+     * @return string string
      * @author Harsh Shah
      */
     public static String generate() {
