@@ -163,6 +163,10 @@ public class StringUtils {
      * @author Harsh Shah
      */
     public static String repeat(String str, int count) {
+        if(isAnyNull(str) || count < 0){
+            return null;
+        }
+
         return str.repeat(count);
     }
 
@@ -176,6 +180,10 @@ public class StringUtils {
      * @author Harsh Shah
      */
     public static String repeatAndJoin(String str, int count, String with) {
+
+        if(isAnyNull(str, with) || count < 0){
+            return null;
+        }
 
         List<String> strs = new ArrayList<>();
 
@@ -234,7 +242,7 @@ public class StringUtils {
      */
     public static String join(String delimiter, List<String> strs){
 
-        if(isAnyNull(delimiter, strs) || strs.isEmpty()){
+        if(isAnyNull(delimiter, strs)){
             return null;
         }
 

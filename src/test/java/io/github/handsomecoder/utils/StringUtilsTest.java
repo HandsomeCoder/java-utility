@@ -20,7 +20,7 @@ class StringUtilsTest {
     /**
      * Test is not empty datasource stream.
      *
-     * @return stream
+     * @return stream stream
      * @author Harsh Shah
      */
     public static Stream<Arguments> testIsNotEmptyDatasource() {
@@ -35,7 +35,7 @@ class StringUtilsTest {
     /**
      * Test is empty datasource stream.
      *
-     * @return stream
+     * @return stream stream
      * @author Harsh Shah
      */
     public static Stream<Arguments> testIsEmptyDatasource() {
@@ -50,7 +50,7 @@ class StringUtilsTest {
     /**
      * Test is any empty datasource stream.
      *
-     * @return stream
+     * @return stream stream
      * @author Harsh Shah
      */
     public static Stream<Arguments> testIsAnyEmptyDatasource() {
@@ -66,6 +66,7 @@ class StringUtilsTest {
      * Test is all empty datasource stream.
      *
      * @return the stream
+     * @author Harsh Shah
      */
     public static Stream<Arguments> testIsAllEmptyDatasource() {
         return Stream.of(
@@ -83,6 +84,7 @@ class StringUtilsTest {
      * Test value of datasource stream.
      *
      * @return the stream
+     * @author Harsh Shah
      */
     public static Stream<Arguments> testValueOfDatasource() {
         return Stream.of(
@@ -92,10 +94,16 @@ class StringUtilsTest {
         );
     }
 
+    /**
+     * Test join datasource stream.
+     *
+     * @return the stream
+     * @author Harsh Shah
+     */
     public static Stream<Arguments> testJoinDatasource() {
         return Stream.of(
                 Arguments.of(null, null, new String[]{EMPTY_STRING, EMPTY_STRING, EMPTY_STRING}),
-                Arguments.of(null, EMPTY_STRING, new String[]{}),
+                Arguments.of(EMPTY_STRING, EMPTY_STRING, new String[]{}),
                 Arguments.of(EMPTY_STRING, EMPTY_STRING, new String[]{EMPTY_STRING, EMPTY_STRING, EMPTY_STRING}),
                 Arguments.of("lorem,EMPTY_STRING,3", ",", new String[]{"lorem", "EMPTY_STRING", "3"}),
                 Arguments.of("lorem,null,3", ",", new String[]{"lorem", null, "3"}),
@@ -103,6 +111,12 @@ class StringUtilsTest {
         );
     }
 
+    /**
+     * Test replace datasource stream.
+     *
+     * @return the stream
+     * @author Harsh Shah
+     */
     public static Stream<Arguments> testReplaceDatasource() {
         return Stream.of(
                 Arguments.of(null, null, EMPTY_STRING, "12345"),
@@ -112,6 +126,12 @@ class StringUtilsTest {
         );
     }
 
+    /**
+     * Test split and trim datasource stream.
+     *
+     * @return the stream
+     * @author Harsh Shah
+     */
     public static Stream<Arguments> testSplitAndTrimDatasource() {
         return Stream.of(
                 Arguments.of(null, null, null),
@@ -123,6 +143,81 @@ class StringUtilsTest {
                 Arguments.of(new String[]{"1", "2", "3", "4", "5"}, "1,2,3,4,5", COMMA),
                 Arguments.of(new String[]{"1", "2", "3", "4", "5"}, " 1, 2, 3, 4, 5 ", COMMA),
                 Arguments.of(new String[]{"1", "", "2", "3", "4", "5"}, "1,,2,3,4,5", COMMA)
+        );
+    }
+
+    /**
+     * Test builder datasource stream.
+     *
+     * @return the stream
+     * @author Harsh Shah
+     */
+    public static Stream<Arguments> testBuilderDatasource() {
+        return Stream.of(
+                Arguments.of(EMPTY_STRING, new String[]{null, null}),
+                Arguments.of(EMPTY_STRING, new String[]{EMPTY_STRING, EMPTY_STRING, EMPTY_STRING}),
+                Arguments.of("sample", new String[]{EMPTY_STRING, "sample", null})
+
+        );
+    }
+
+    /**
+     * Test get hash datasource stream.
+     *
+     * @return the stream
+     * @author Harsh Shah
+     */
+    public static Stream<Arguments> testGetHashDatasource() {
+        return Stream.of(
+                Arguments.of(null, null, null),
+                Arguments.of(null, EMPTY_STRING, null),
+                Arguments.of(null, null, HASH_WITH_SHA_256),
+                Arguments.of(null, EMPTY_STRING, EMPTY_STRING),
+                Arguments.of(null, "sample", EMPTY_STRING),
+                Arguments.of("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                        EMPTY_STRING, HASH_WITH_SHA_256),
+                Arguments.of("af2bdbe1aa9b6ec1e2ade1d694f41fc71a831d0268e9891562113d8a62add1bf", "sample", HASH_WITH_SHA_256)
+        );
+    }
+
+    /**
+     * Test repeat datasource stream.
+     *
+     * @return the stream
+     * @author Harsh Shah
+     */
+    public static Stream<Arguments> testRepeatDatasource() {
+        return Stream.of(
+                Arguments.of(null, null, 0),
+                Arguments.of(EMPTY_STRING, EMPTY_STRING, 0),
+                Arguments.of(EMPTY_STRING, EMPTY_STRING, 1),
+                Arguments.of(EMPTY_STRING, EMPTY_STRING, 5),
+                Arguments.of(EMPTY_STRING, "abc", 0),
+                Arguments.of("abc", "abc", 1),
+                Arguments.of("abcabcabcabcabc", "abc", 5)
+        );
+    }
+
+    /**
+     * Test repeat and join datasource stream.
+     *
+     * @return the stream
+     * @author Harsh Shah
+     */
+    public static Stream<Arguments> testRepeatAndJoinDatasource() {
+        return Stream.of(
+                Arguments.of(null, null, 0, null),
+                Arguments.of(null, "abc", 0, null),
+                Arguments.of(null, "abc", -1, null),
+                Arguments.of(null, "abc", -1, BLANK_SPACE),
+                Arguments.of(EMPTY_STRING, EMPTY_STRING, 0, EMPTY_STRING),
+                Arguments.of(EMPTY_STRING, EMPTY_STRING, 1, EMPTY_STRING),
+                Arguments.of(EMPTY_STRING, EMPTY_STRING, 5, EMPTY_STRING),
+                Arguments.of(EMPTY_STRING, "abc", 0, EMPTY_STRING),
+                Arguments.of("abc", "abc", 1, EMPTY_STRING),
+                Arguments.of("abcabcabcabcabc", "abc", 5, EMPTY_STRING),
+                Arguments.of("abc@abc@abc@abc@abc", "abc", 5, "@"),
+                Arguments.of("abc,abc", "abc", 2, COMMA)
         );
     }
 
@@ -192,9 +287,11 @@ class StringUtilsTest {
     }
 
     /**
-     * @param expected
-     * @param delimiter
-     * @param strs
+     * Test join with varargs.
+     *
+     * @param expected  the expected
+     * @param delimiter the delimiter
+     * @param strs      the strs
      * @author Harsh Shah
      */
     @ParameterizedTest(name = "{index}: testJoinWithVarargs() = {0}")
@@ -204,9 +301,11 @@ class StringUtilsTest {
     }
 
     /**
-     * @param expected
-     * @param delimiter
-     * @param strs
+     * Test join with list.
+     *
+     * @param expected  the expected
+     * @param delimiter the delimiter
+     * @param strs      the strs
      * @author Harsh Shah
      */
     @ParameterizedTest(name = "{index}: testJoinWithList() = {0}")
@@ -216,10 +315,12 @@ class StringUtilsTest {
     }
 
     /**
-     * @param expected
-     * @param str
-     * @param replace
-     * @param with
+     * Test replace.
+     *
+     * @param expected the expected
+     * @param str      the str
+     * @param replace  the replace
+     * @param with     the with
      * @author Harsh Shah
      */
     @ParameterizedTest(name = "{index}: testReplace() = {0}")
@@ -228,42 +329,74 @@ class StringUtilsTest {
         assertEquals(expected, replace(str, replace, with));
     }
 
+    /**
+     * Test split and trim.
+     *
+     * @param expected the expected
+     * @param str      the str
+     * @param with     the with
+     * @author Harsh Shah
+     */
     @ParameterizedTest(name = "{index}: testSplitAndTrim() = {0}")
     @MethodSource("testSplitAndTrimDatasource")
     void testSplitAndTrim(String[] expected, String str, String with) {
         assertArrayEquals(expected, splitAndTrim(str, with));
     }
 
-    public static Stream<Arguments> testBuilderDatasource() {
-        return Stream.of(
-                Arguments.of(EMPTY_STRING, new String[]{null, null}),
-                Arguments.of(EMPTY_STRING, new String[]{EMPTY_STRING, EMPTY_STRING, EMPTY_STRING}),
-                Arguments.of("sample", new String[]{EMPTY_STRING, "sample", null})
-
-        );
-    }
-
+    /**
+     * Test builder.
+     *
+     * @param expected the expected
+     * @param str      the str
+     * @author Harsh Shah
+     */
     @ParameterizedTest(name = "{index}: testBuilder() = {0}")
     @MethodSource("testBuilderDatasource")
     void testBuilder(String expected, String[] str) {
         assertEquals(expected, builder(str));
     }
 
-    public static Stream<Arguments> testGetHashDatasource() {
-        return Stream.of(
-                Arguments.of(null, null, null),
-                Arguments.of(null, EMPTY_STRING, null),
-                Arguments.of(null, null, HASH_WITH_SHA_256),
-                Arguments.of("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-                        EMPTY_STRING, HASH_WITH_SHA_256),
-                Arguments.of("af2bdbe1aa9b6ec1e2ade1d694f41fc71a831d0268e9891562113d8a62add1bf", "sample", HASH_WITH_SHA_256)
-        );
-    }
-
+    /**
+     * Test get hash.
+     *
+     * @param expected the expected
+     * @param str      the str
+     * @param algo     the algo
+     * @author Harsh Shah
+     */
     @ParameterizedTest(name = "{index}: testGetHash() = {0}")
     @MethodSource("testGetHashDatasource")
     void testGetHash(String expected, String str, String algo) {
         assertEquals(expected, getHash(str, algo));
+    }
+
+    /**
+     * Test repeat.
+     *
+     * @param expected the expected
+     * @param str      the str
+     * @param cnt      the cnt
+     * @author Harsh Shah
+     */
+    @ParameterizedTest(name = "{index}: testRepeat() = {0}")
+    @MethodSource("testRepeatDatasource")
+    void testRepeat(String expected, String str, Integer cnt) {
+        assertEquals(expected, repeat(str, cnt));
+    }
+
+    /**
+     * Test repeat and join.
+     *
+     * @param expected the expected
+     * @param str      the str
+     * @param cnt      the cnt
+     * @param with     the with
+     * @author Harsh Shah
+     */
+    @ParameterizedTest(name = "{index}: testRepeatAndJoin() = {0}")
+    @MethodSource("testRepeatAndJoinDatasource")
+    void testRepeatAndJoin(String expected, String str, Integer cnt, String with) {
+        assertEquals(expected, repeatAndJoin(str, cnt, with));
     }
 
 }
