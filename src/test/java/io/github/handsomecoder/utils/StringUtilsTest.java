@@ -4,12 +4,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
-import static io.github.handsomecoder.constant.ApplicationConstant.BLANK_SPACE;
-import static io.github.handsomecoder.constant.ApplicationConstant.EMPTY_STRING;
+import static io.github.handsomecoder.constant.ApplicationConstant.*;
 import static io.github.handsomecoder.utils.StringUtils.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * The type String utils test.
@@ -91,6 +92,40 @@ class StringUtilsTest {
         );
     }
 
+    public static Stream<Arguments> testJoinDatasource() {
+        return Stream.of(
+                Arguments.of(null, null, new String[]{EMPTY_STRING, EMPTY_STRING, EMPTY_STRING}),
+                Arguments.of(null, EMPTY_STRING, new String[]{}),
+                Arguments.of(EMPTY_STRING, EMPTY_STRING, new String[]{EMPTY_STRING, EMPTY_STRING, EMPTY_STRING}),
+                Arguments.of("lorem,EMPTY_STRING,3", ",", new String[]{"lorem", "EMPTY_STRING", "3"}),
+                Arguments.of("lorem,null,3", ",", new String[]{"lorem", null, "3"}),
+                Arguments.of("sample1   3", BLANK_SPACE, new String[]{"sample1", BLANK_SPACE, "3"})
+        );
+    }
+
+    public static Stream<Arguments> testReplaceDatasource() {
+        return Stream.of(
+                Arguments.of(null, null, EMPTY_STRING, "12345"),
+                Arguments.of("12345s12345a12345m12345p12345l12345e12345", "sample", EMPTY_STRING, "12345"),
+                Arguments.of("sample", "s@mple", "@", "a"),
+                Arguments.of("What a day!", "Wh@t @ d@y!", "@", "a")
+        );
+    }
+
+    public static Stream<Arguments> testSplitAndTrimDatasource() {
+        return Stream.of(
+                Arguments.of(null, null, null),
+                Arguments.of(null, "1,2,3,4,5", null),
+                Arguments.of(null, null, COMMA),
+                Arguments.of(new String[]{EMPTY_STRING}, EMPTY_STRING, EMPTY_STRING),
+                Arguments.of(new String[]{"s", "a", "m", "p", "l", "e"}, "sample", EMPTY_STRING),
+                Arguments.of(new String[]{EMPTY_STRING}, EMPTY_STRING, COMMA),
+                Arguments.of(new String[]{"1", "2", "3", "4", "5"}, "1,2,3,4,5", COMMA),
+                Arguments.of(new String[]{"1", "2", "3", "4", "5"}, " 1, 2, 3, 4, 5 ", COMMA),
+                Arguments.of(new String[]{"1", "", "2", "3", "4", "5"}, "1,,2,3,4,5", COMMA)
+        );
+    }
+
     /**
      * Test is not empty.
      *
@@ -154,6 +189,81 @@ class StringUtilsTest {
     @MethodSource("testValueOfDatasource")
     void testValueOf(String expected, Object str) {
         assertEquals(expected, valueOf(str));
+    }
+
+    /**
+     * @param expected
+     * @param delimiter
+     * @param strs
+     * @author Harsh Shah
+     */
+    @ParameterizedTest(name = "{index}: testJoinWithVarargs() = {0}")
+    @MethodSource("testJoinDatasource")
+    void testJoinWithVarargs(String expected, String delimiter, String[] strs) {
+        assertEquals(expected, join(delimiter, strs));
+    }
+
+    /**
+     * @param expected
+     * @param delimiter
+     * @param strs
+     * @author Harsh Shah
+     */
+    @ParameterizedTest(name = "{index}: testJoinWithList() = {0}")
+    @MethodSource("testJoinDatasource")
+    void testJoinWithList(String expected, String delimiter, String[] strs) {
+        assertEquals(expected, join(delimiter, Arrays.asList(strs)));
+    }
+
+    /**
+     * @param expected
+     * @param str
+     * @param replace
+     * @param with
+     * @author Harsh Shah
+     */
+    @ParameterizedTest(name = "{index}: testReplace() = {0}")
+    @MethodSource("testReplaceDatasource")
+    void testReplace(String expected, String str, String replace, String with) {
+        assertEquals(expected, replace(str, replace, with));
+    }
+
+    @ParameterizedTest(name = "{index}: testSplitAndTrim() = {0}")
+    @MethodSource("testSplitAndTrimDatasource")
+    void testSplitAndTrim(String[] expected, String str, String with) {
+        assertArrayEquals(expected, splitAndTrim(str, with));
+    }
+
+    public static Stream<Arguments> testBuilderDatasource() {
+        return Stream.of(
+                Arguments.of(EMPTY_STRING, new String[]{null, null}),
+                Arguments.of(EMPTY_STRING, new String[]{EMPTY_STRING, EMPTY_STRING, EMPTY_STRING}),
+                Arguments.of("sample", new String[]{EMPTY_STRING, "sample", null})
+
+        );
+    }
+
+    @ParameterizedTest(name = "{index}: testBuilder() = {0}")
+    @MethodSource("testBuilderDatasource")
+    void testBuilder(String expected, String[] str) {
+        assertEquals(expected, builder(str));
+    }
+
+    public static Stream<Arguments> testGetHashDatasource() {
+        return Stream.of(
+                Arguments.of(null, null, null),
+                Arguments.of(null, EMPTY_STRING, null),
+                Arguments.of(null, null, HASH_WITH_SHA_256),
+                Arguments.of("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                        EMPTY_STRING, HASH_WITH_SHA_256),
+                Arguments.of("af2bdbe1aa9b6ec1e2ade1d694f41fc71a831d0268e9891562113d8a62add1bf", "sample", HASH_WITH_SHA_256)
+        );
+    }
+
+    @ParameterizedTest(name = "{index}: testGetHash() = {0}")
+    @MethodSource("testGetHashDatasource")
+    void testGetHash(String expected, String str, String algo) {
+        assertEquals(expected, getHash(str, algo));
     }
 
 }

@@ -15,4 +15,6 @@ public class ApplicationConstant {
      * The constant EMPTY_STRING.
      */
     public static final String EMPTY_STRING = "";
+
+    public static final String COMMA = ",";
 }

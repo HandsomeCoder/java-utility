@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
+import static io.github.handsomecoder.utils.ObjectUtils.isAnyNull;
+
 /**
  * The type String utils.
  *
@@ -89,6 +91,11 @@ public class StringUtils {
         StringBuilder builder = new StringBuilder();
 
         for (String value : values) {
+
+            if(isEmpty(value)){
+                continue;
+            }
+
             builder.append(value);
         }
 
@@ -115,6 +122,11 @@ public class StringUtils {
      * @author Harsh Shah
      */
     public static String getHash(String str, String algo) {
+
+        if(isAnyNull(str, algo)){
+            return null;
+        }
+
         MessageDigest digest = null;
         try {
             digest = MessageDigest.getInstance(algo);
@@ -182,6 +194,11 @@ public class StringUtils {
      * @return string [ ]
      */
     public static String[] splitAndTrim(String str, String regex) {
+
+        if(isAnyNull(str, regex)){
+            return null;
+        }
+
         String[] parts = str.split(regex);
 
         for (int i = 0; i < parts.length; i++) {
@@ -200,6 +217,10 @@ public class StringUtils {
      * @return string string
      */
     public static String replace(String str, String regex, String replacement) {
+        if(isAnyNull(str, regex, replacement)){
+            return null;
+        }
+
         return str.replaceAll(regex, replacement);
     }
 
@@ -213,7 +234,7 @@ public class StringUtils {
      */
     public static String join(String delimiter, List<String> strs){
 
-        if(strs == null || strs.isEmpty()){
+        if(isAnyNull(delimiter, strs) || strs.isEmpty()){
             return null;
         }
 
