@@ -2,7 +2,11 @@ package io.github.handsomecoder.utils.json;
 
 import java.util.*;
 
+import static io.github.handsomecoder.utils.ObjectUtils.isNotNull;
+
 /**
+ * The type Json parser.
+ *
  * @author Harsh Shah
  */
 public class JsonParser {
@@ -20,22 +24,25 @@ public class JsonParser {
     }
 
     /**
-     * @param jsonString
-     * @return
+     * Find opening closing brackets map.
+     *
+     * @param jsonString the json string
+     * @return map map
      * @author Harsh Shah
      */
     public static Map<Integer, Integer> findOpeningClosingBrackets(String jsonString) {
 
         Map<Integer, Integer> result = new HashMap<>();
-
         char[] characters = jsonString.toCharArray();
-
-        Stack<ClosingCharacterModel> stack = new Stack<>();
+        ArrayDeque<ClosingCharacterModel> stack = new ArrayDeque<>();
 
         for (int i = 0; i < characters.length; i++) {
 
             if (characters[i] == DOUBLE_QUOTE) {
+                // skip the double quote
                 i++;
+
+                // skip all the characters between starting and ending double quotes
                 while (!(characters[i] == DOUBLE_QUOTE &&
                         (i == 0 || characters[i - 1] != BACKSLASH))) {
                     i++;
@@ -46,7 +53,7 @@ public class JsonParser {
             } else if (characters[i] == OPENING_SQUARE_BRACKET && (i == 0 || characters[i - 1] == COLON)) {
                 stack.push(new ClosingCharacterModel(CLOSING_SQUARE_BRACKET, i));
                 result.put(i, -1);
-            } else if (characters[i] == stack.peek().getCharacter()) {
+            } else if (isNotNull(stack.peek()) && characters[i] == stack.peek().getCharacter()) {
                 result.put(stack.pop().getIndex(), i);
             }
         }
@@ -55,10 +62,12 @@ public class JsonParser {
     }
 
     /**
-     * @param characters
-     * @param startIdx
-     * @param openingClosingMap
-     * @return
+     * Build map hash model.
+     *
+     * @param characters        the characters
+     * @param startIdx          the start idx
+     * @param openingClosingMap the opening closing map
+     * @return hash model
      * @author Harsh Shah
      */
     public static HashModel buildMap(char[] characters, Integer startIdx,
@@ -98,7 +107,7 @@ public class JsonParser {
 
             if (OPENING_SQUARE_BRACKET == characters[i]) {
                 result.put(keyBuilder.toString(), buildArray(characters, i, openingClosingMap));
-                if (openingClosingMap == null || !openingClosingMap.containsKey(i)) {
+                if (!openingClosingMap.containsKey(i)) {
                     System.out.println(openingClosingMap);
                 }
                 i = openingClosingMap.get(i);
@@ -160,7 +169,7 @@ public class JsonParser {
         i++;
 
         while (i < endIdx) {
-            Character character = characters[i];
+            char character = characters[i];
 
             if (COMMA == character) {
                 i++;
@@ -202,8 +211,10 @@ public class JsonParser {
     }
 
     /**
-     * @param jsonString
-     * @return
+     * Parse hash model.
+     *
+     * @param jsonString the json string
+     * @return hash model
      * @author Harsh Shah
      */
     public static HashModel parse(String jsonString) {

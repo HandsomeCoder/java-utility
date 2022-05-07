@@ -9,6 +9,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * The type File utils.
+ *
  * @author Harsh Shah
  */
 public class FileUtils {
@@ -17,8 +19,10 @@ public class FileUtils {
     }
 
     /**
-     * @param path
-     * @return
+     * Create directory int.
+     *
+     * @param path the path
+     * @return int int
      * @author Harsh Shah
      */
     public static int createDirectory(Path path) {
@@ -34,26 +38,26 @@ public class FileUtils {
     }
 
     /**
-     * @param start
-     * @param tails
-     * @return
+     * Create directory int.
+     *
+     * @param start the start
+     * @param tails the tails
+     * @return int int
      */
     public static int createDirectory(String start, String... tails) {
 
         Path path = Path.of(start, tails);
-
-        if (path == null) {
-            return -1;
-        }
 
         return createDirectory(path);
     }
 
 
     /**
-     * @param start
-     * @param tails
-     * @return
+     * Create file int.
+     *
+     * @param start the start
+     * @param tails the tails
+     * @return int int
      * @author Harsh Shah
      */
     public static int createFile(String start, String... tails) {
@@ -68,8 +72,10 @@ public class FileUtils {
     }
 
     /**
-     * @param path
-     * @return
+     * Create file int.
+     *
+     * @param path the path
+     * @return int int
      * @author Harsh Shah
      */
     public static int createFile(Path path) {
@@ -85,8 +91,10 @@ public class FileUtils {
     }
 
     /**
-     * @param path
-     * @return
+     * Is exists boolean.
+     *
+     * @param path the path
+     * @return boolean boolean
      * @author Harsh Shah
      */
     public static boolean isExists(Path path) {
@@ -98,8 +106,10 @@ public class FileUtils {
     }
 
     /**
-     * @param path
-     * @return
+     * Is not exists boolean.
+     *
+     * @param path the path
+     * @return boolean boolean
      * @author Harsh Shah
      */
     public static boolean isNotExists(Path path) {
@@ -107,9 +117,11 @@ public class FileUtils {
     }
 
     /**
-     * @param start
-     * @param more
-     * @return
+     * Read list.
+     *
+     * @param start the start
+     * @param more  the more
+     * @return list list
      * @author Harsh Shah
      */
     public static List<String> read(String start, String... more) {
@@ -128,10 +140,12 @@ public class FileUtils {
 
 
     /**
-     * @param line
-     * @param startLocation
-     * @param location
-     * @return
+     * Write int.
+     *
+     * @param line          the line
+     * @param startLocation the start location
+     * @param location      the location
+     * @return int int
      * @author Harsh Shah
      */
     public static int write(String line, String startLocation, String... location) {
@@ -140,20 +154,17 @@ public class FileUtils {
 
 
     /**
-     * @param lines
-     * @param startDirectory
-     * @param location
-     * @return
+     * Write int.
+     *
+     * @param lines          the lines
+     * @param startDirectory the start directory
+     * @param location       the location
+     * @return int int
      * @author Harsh Shah
      */
     public static int write(List<String> lines, String startDirectory, String... location) {
 
         Path path = Path.of(startDirectory, location);
-
-        if (path == null) {
-            return -1;
-        }
-
 
         path = path.toAbsolutePath();
 

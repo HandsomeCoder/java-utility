@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
+import static io.github.handsomecoder.utils.ObjectUtils.isAnyNull;
+
 /**
  * The type String utils.
  *
@@ -16,11 +18,16 @@ import java.util.stream.Collectors;
  */
 public class StringUtils {
 
+    /**
+     * The constant HASH_WITH_SHA_256.
+     */
     public static final String HASH_WITH_SHA_256 = "SHA-256";
 
     /**
-     * @param str
-     * @return
+     * Is empty boolean.
+     *
+     * @param str the str
+     * @return boolean boolean
      * @author Harsh Shah
      */
     public static boolean isEmpty(String str) {
@@ -28,8 +35,10 @@ public class StringUtils {
     }
 
     /**
-     * @param str
-     * @return
+     * Is not empty boolean.
+     *
+     * @param str the str
+     * @return boolean boolean
      * @author Harsh Shah
      */
     public static boolean isNotEmpty(String str) {
@@ -37,8 +46,10 @@ public class StringUtils {
     }
 
     /**
-     * @param strs
-     * @return
+     * Is any empty boolean.
+     *
+     * @param strs the strs
+     * @return boolean boolean
      * @author Harsh Shah
      */
     public static boolean isAnyEmpty(String... strs) {
@@ -52,8 +63,10 @@ public class StringUtils {
     }
 
     /**
-     * @param strings
-     * @return
+     * Is all empty boolean.
+     *
+     * @param strings the strings
+     * @return boolean boolean
      * @author Harsh Shah
      */
     public static boolean isAllEmpty(String... strings) {
@@ -67,8 +80,10 @@ public class StringUtils {
     }
 
     /**
-     * @param values
-     * @return
+     * Builder string.
+     *
+     * @param values the values
+     * @return string string
      * @author Harsh Shah
      */
     public static String builder(String... values) {
@@ -76,6 +91,11 @@ public class StringUtils {
         StringBuilder builder = new StringBuilder();
 
         for (String value : values) {
+
+            if(isEmpty(value)){
+                continue;
+            }
+
             builder.append(value);
         }
 
@@ -83,8 +103,10 @@ public class StringUtils {
     }
 
     /**
-     * @param value
-     * @return
+     * Value of string.
+     *
+     * @param value the value
+     * @return string string
      * @author Harsh Shah
      */
     public static String valueOf(Object value) {
@@ -92,11 +114,19 @@ public class StringUtils {
     }
 
     /**
-     * @param str
-     * @return
+     * Gets hash.
+     *
+     * @param str  the str
+     * @param algo the algo
+     * @return hash hash
      * @author Harsh Shah
      */
     public static String getHash(String str, String algo) {
+
+        if(isAnyNull(str, algo)){
+            return null;
+        }
+
         MessageDigest digest = null;
         try {
             digest = MessageDigest.getInstance(algo);
@@ -107,8 +137,10 @@ public class StringUtils {
     }
 
     /**
-     * @param hash
-     * @return
+     * Bytes to hex string.
+     *
+     * @param hash the hash
+     * @return string string
      */
     public static String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);
@@ -123,23 +155,35 @@ public class StringUtils {
     }
 
     /**
-     * @param str
-     * @param count
-     * @return
+     * Repeat string.
+     *
+     * @param str   the str
+     * @param count the count
+     * @return string string
      * @author Harsh Shah
      */
     public static String repeat(String str, int count) {
+        if(isAnyNull(str) || count < 0){
+            return null;
+        }
+
         return str.repeat(count);
     }
 
     /**
-     * @param str
-     * @param count
-     * @param with
-     * @return
+     * Repeat and join string.
+     *
+     * @param str   the str
+     * @param count the count
+     * @param with  the with
+     * @return string string
      * @author Harsh Shah
      */
     public static String repeatAndJoin(String str, int count, String with) {
+
+        if(isAnyNull(str, with) || count < 0){
+            return null;
+        }
 
         List<String> strs = new ArrayList<>();
 
@@ -151,11 +195,18 @@ public class StringUtils {
     }
 
     /**
-     * @param str
-     * @param regex
-     * @return
+     * Split and trim string [ ].
+     *
+     * @param str   the str
+     * @param regex the regex
+     * @return string [ ]
      */
     public static String[] splitAndTrim(String str, String regex) {
+
+        if(isAnyNull(str, regex)){
+            return null;
+        }
+
         String[] parts = str.split(regex);
 
         for (int i = 0; i < parts.length; i++) {
@@ -166,12 +217,18 @@ public class StringUtils {
     }
 
     /**
-     * @param str
-     * @param regex
-     * @param replacement
-     * @return
+     * Replace string.
+     *
+     * @param str         the str
+     * @param regex       the regex
+     * @param replacement the replacement
+     * @return string string
      */
     public static String replace(String str, String regex, String replacement) {
+        if(isAnyNull(str, regex, replacement)){
+            return null;
+        }
+
         return str.replaceAll(regex, replacement);
     }
 
@@ -180,12 +237,12 @@ public class StringUtils {
      *
      * @param delimiter the delimiter
      * @param strs      the strs
-     * @return string
+     * @return string string
      * @author Harsh Shah
      */
     public static String join(String delimiter, List<String> strs){
 
-        if(strs == null || strs.isEmpty()){
+        if(isAnyNull(delimiter, strs)){
             return null;
         }
 

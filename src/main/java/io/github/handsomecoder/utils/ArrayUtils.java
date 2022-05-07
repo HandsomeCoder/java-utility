@@ -1,14 +1,19 @@
 package io.github.handsomecoder.utils;
 
+/**
+ * The type Array utils.
+ */
 public class ArrayUtils {
 
     private ArrayUtils(){}
 
     /**
-     * @param strs
-     * @param regex
-     * @param replacement
-     * @return
+     * Replace string [ ].
+     *
+     * @param strs        the strs
+     * @param regex       the regex
+     * @param replacement the replacement
+     * @return string [ ]
      * @author Harsh Shah
      */
     public static String[] replace(String[] strs, String regex, String replacement) {
