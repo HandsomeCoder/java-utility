@@ -1,5 +1,7 @@
 package io.github.handsomecoder.utils.http;
 
+import io.github.handsomecoder.exceptions.InvalidURLSyntaxException;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Map;
@@ -28,15 +30,13 @@ public class UriBuilder {
     public static UriBuilder from(String url) {
 
         UriBuilder builder = new UriBuilder();
-        builder.setUrlStringBuilder(new StringBuilder(url));
-        builder.setNumberOfQuery(0);
-
         try {
-            URI uri = new URI(url);
+            new URI(url);
+            builder.setUrlStringBuilder(new StringBuilder(url));
+            builder.setNumberOfQuery(0);
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            throw new InvalidURLSyntaxException(e.getMessage());
         }
-
 
         return builder;
     }

@@ -2,6 +2,8 @@ package io.github.handsomecoder.utils.json;
 
 import java.util.*;
 
+import static io.github.handsomecoder.utils.ObjectUtils.isNotNull;
+
 /**
  * The type Json parser.
  *
@@ -32,7 +34,7 @@ public class JsonParser {
 
         Map<Integer, Integer> result = new HashMap<>();
         char[] characters = jsonString.toCharArray();
-        Stack<ClosingCharacterModel> stack = new Stack<>();
+        ArrayDeque<ClosingCharacterModel> stack = new ArrayDeque<>();
 
         for (int i = 0; i < characters.length; i++) {
 
@@ -51,7 +53,7 @@ public class JsonParser {
             } else if (characters[i] == OPENING_SQUARE_BRACKET && (i == 0 || characters[i - 1] == COLON)) {
                 stack.push(new ClosingCharacterModel(CLOSING_SQUARE_BRACKET, i));
                 result.put(i, -1);
-            } else if (characters[i] == stack.peek().getCharacter()) {
+            } else if (isNotNull(stack.peek()) && characters[i] == stack.peek().getCharacter()) {
                 result.put(stack.pop().getIndex(), i);
             }
         }
@@ -105,7 +107,7 @@ public class JsonParser {
 
             if (OPENING_SQUARE_BRACKET == characters[i]) {
                 result.put(keyBuilder.toString(), buildArray(characters, i, openingClosingMap));
-                if (openingClosingMap == null || !openingClosingMap.containsKey(i)) {
+                if (!openingClosingMap.containsKey(i)) {
                     System.out.println(openingClosingMap);
                 }
                 i = openingClosingMap.get(i);
@@ -167,7 +169,7 @@ public class JsonParser {
         i++;
 
         while (i < endIdx) {
-            Character character = characters[i];
+            char character = characters[i];
 
             if (COMMA == character) {
                 i++;

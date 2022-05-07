@@ -1,5 +1,7 @@
 package io.github.handsomecoder.utils.http;
 
+import io.github.handsomecoder.exceptions.InvalidHTTPRequestException;
+
 import java.io.IOException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -260,7 +262,7 @@ public class HttpClientUtils {
         try {
             response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            throw new InvalidHTTPRequestException(e.getMessage());
         }
 
         if (isNull(response)) {

@@ -1,7 +1,12 @@
 package io.github.handsomecoder.utils;
 
-import java.util.List;
+import com.google.errorprone.annotations.FormatMethod;
+import com.google.errorprone.annotations.FormatString;
 
+import java.util.List;
+import java.util.Objects;
+
+import static io.github.handsomecoder.utils.ObjectUtils.requireNonNull;
 import static io.github.handsomecoder.utils.StringUtils.repeat;
 import static io.github.handsomecoder.utils.StringUtils.repeatAndJoin;
 import static java.lang.String.format;
@@ -79,7 +84,8 @@ public class PrintUtils {
      * @param values  the values
      * @author Harsh Shah
      */
-    public static void success(String message, Object... values) {
+    @FormatMethod
+    public static void success(@FormatString String message, Object... values) {
         success(format(message, values));
     }
 
@@ -100,7 +106,8 @@ public class PrintUtils {
      * @param values  the values
      * @author Harsh Shah
      */
-    public static void error(String message, Object... values) {
+    @FormatMethod
+    public static void error(@FormatString String message, Object... values) {
         error(format(message, values));
     }
 
@@ -113,10 +120,10 @@ public class PrintUtils {
      */
     public static void printMatrix(List<String> headers, List<List<Object>> matrix) {
         println("");
-        println(format(repeatAndJoin("  %15s  ", headers.size(), "|"), headers.toArray()));
+        println(format(requireNonNull(repeatAndJoin("  %15s  ", headers.size(), "|")), headers.toArray()));
         println(repeat("-", (19 * headers.size()) + headers.size() - 1));
         for (List<Object> row : matrix) {
-            println(format(repeatAndJoin("  %15s  ", headers.size(), "|"), row.toArray()));
+            println(format(requireNonNull(repeatAndJoin("  %15s  ", headers.size(), "|")), row.toArray()));
         }
         println("");
     }

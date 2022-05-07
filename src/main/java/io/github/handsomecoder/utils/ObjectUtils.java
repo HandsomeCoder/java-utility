@@ -93,4 +93,11 @@ public class ObjectUtils {
         return tClass.isInstance(object);
     }
 
+
+    public static <T> T requireNonNull(T obj) {
+        if (obj == null)
+            throw new NullPointerException();
+        return obj;
+    }
+
 }
