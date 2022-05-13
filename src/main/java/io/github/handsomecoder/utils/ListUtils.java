@@ -22,8 +22,11 @@ public class ListUtils {
      */
     public static List<Object> project(List<Integer> projection, List<Object> values) {
         List<Object> result = new ArrayList<>();
+        int size = values.size();
         for (Integer project : projection) {
-            result.add(values.get(project));
+            if(project < size) {
+                result.add(values.get(project));
+            }
         }
 
         return result;

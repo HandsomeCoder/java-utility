@@ -94,10 +94,16 @@ public class ObjectUtils {
     }
 
 
+    /**
+     * Require non null t.
+     *
+     * @param <T> the type parameter
+     * @param obj the obj
+     * @return the t
+     */
     public static <T> T requireNonNull(T obj) {
         if (obj == null)
             throw new NullPointerException();
         return obj;
     }
-
 }

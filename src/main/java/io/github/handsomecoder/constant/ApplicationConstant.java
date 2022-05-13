@@ -16,5 +16,8 @@ public class ApplicationConstant {
      */
     public static final String EMPTY_STRING = "";
 
+    /**
+     * The constant COMMA.
+     */
     public static final String COMMA = ",";
 }

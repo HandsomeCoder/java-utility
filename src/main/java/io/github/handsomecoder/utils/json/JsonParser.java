@@ -24,6 +24,17 @@ public class JsonParser {
     }
 
     /**
+     * Parse hash model.
+     *
+     * @param jsonString the json string
+     * @return hash model
+     * @author Harsh Shah
+     */
+    public static HashModel parse(String jsonString) {
+        return buildMap(jsonString.toCharArray(), 0, findOpeningClosingBrackets(jsonString));
+    }
+
+    /**
      * Find opening closing brackets map.
      *
      * @param jsonString the json string
@@ -121,29 +132,41 @@ public class JsonParser {
                 // skip curly bracket
                 i++;
             } else {
-                StringBuilder valueBuilder = new StringBuilder();
+                String value = parseStringValue(characters, i);
+                result.put(keyBuilder.toString(), value);
 
-                // parse String value
-                if (characters[i] == DOUBLE_QUOTE) {
-                    i++;
-                    while (!(characters[i] == DOUBLE_QUOTE &&
-                            (characters[i + 1] == COMMA || characters[i + 1] == CLOSING_CURLY_BRACKET) &&
-                            (i == 0 || characters[i - 1] != BACKSLASH))) {
-                        valueBuilder.append(characters[i++]);
-                    }
-                } else {
-                    while (!(characters[i] == COMMA || characters[i] == CLOSING_CURLY_BRACKET)) {
-                        valueBuilder.append(characters[i++]);
-                    }
-                }
-
-                i++;
-
-                result.put(keyBuilder.toString(), valueBuilder.toString());
+                // skip quotes and value
+                i += value.length() + 2;
             }
         }
 
         return result;
+    }
+
+    /**
+     * @param characters
+     * @param i
+     * @return
+     * @author Harsh Shah
+     */
+    private static String parseStringValue(char[] characters, int i) {
+        StringBuilder valueBuilder = new StringBuilder();
+
+        // parse String value
+        if (characters[i] == DOUBLE_QUOTE) {
+            i++;
+            while (!(characters[i] == DOUBLE_QUOTE &&
+                    (characters[i + 1] == COMMA || characters[i + 1] == CLOSING_CURLY_BRACKET) &&
+                    (i == 0 || characters[i - 1] != BACKSLASH))) {
+                valueBuilder.append(characters[i++]);
+            }
+        } else {
+            while (!(characters[i] == COMMA || characters[i] == CLOSING_CURLY_BRACKET)) {
+                valueBuilder.append(characters[i++]);
+            }
+        }
+
+        return valueBuilder.toString();
     }
 
     /**
@@ -183,44 +206,14 @@ public class JsonParser {
                 // skip curly bracket
                 i++;
             } else {
-                StringBuilder valueBuilder = new StringBuilder();
+                String value = parseStringValue(characters, i);
+                result.add(value);
 
-                // parse String value
-                if (characters[i] == DOUBLE_QUOTE) {
-                    i++;
-                    while (!(characters[i] == DOUBLE_QUOTE &&
-                            (characters[i + 1] == COMMA || characters[i + 1] == CLOSING_SQUARE_BRACKET) &&
-                            (i == 0 || characters[i - 1] != BACKSLASH))) {
-                        valueBuilder.append(characters[i++]);
-                    }
-                } else {
-                    while (!(characters[i] == COMMA || characters[i] == CLOSING_SQUARE_BRACKET)) {
-                        valueBuilder.append(characters[i++]);
-                    }
-                }
-
-                result.add(valueBuilder.toString());
-
-                // skip quote
-                i++;
+                // skip quotes and value
+                i += value.length() + 2;
             }
         }
 
-
         return result;
-    }
-
-    /**
-     * Parse hash model.
-     *
-     * @param jsonString the json string
-     * @return hash model
-     * @author Harsh Shah
-     */
-    public static HashModel parse(String jsonString) {
-        Map<Integer, Integer> openingClosingMap = findOpeningClosingBrackets(jsonString);
-
-        return buildMap(jsonString.toCharArray(), 0, openingClosingMap);
-
     }
 }
